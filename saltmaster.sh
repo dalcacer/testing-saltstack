@@ -6,3 +6,4 @@ sudo apt-get update -y -q
 sudo apt-get install -y salt-master
 sudo cp /vagrant/master.conf /etc/salt/master
 sudo pip install -U halite gevent cherrypy 
+sudo service salt-master restart
