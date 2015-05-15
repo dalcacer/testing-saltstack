@@ -18,9 +18,8 @@ function measure() {
 }
 
 
-
-for i in 102400 24576 3072 2048 1024 250 40 20
+#for i in 102400 24576 3072 2048 1024 250 40 20
+for i in 2048 1024 250 40 20
   do
     measure $i
   done
-}

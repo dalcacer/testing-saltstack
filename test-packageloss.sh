@@ -20,4 +20,3 @@ for i in {0..60..5}
   do
     measure $i
   done
-}
