@@ -7,7 +7,8 @@ function measure() {
 
   for i in {1..5}
   do
-    (time salt -t 180 'minion' cp.get_file /vagrant/jdom-2.0.6.zip /tmp/jdom-2.0.6.zip) 2>> times
+    (time salt -t 180 'minion' state.sls copy) 2>> times
+    salt -t 180 'minion' state.sls delete
     sleep 5
   done
 

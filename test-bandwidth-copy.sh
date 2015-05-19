@@ -3,19 +3,27 @@ cat /dev/null > times
 
 function measure() {
   echo "$1 bandwidth" >> times
+  # egress limit
   tc qdisc add dev eth1 handle 1: root htb default 11
   tc class add dev eth1 parent 1: classid 1:1 htb rate $1kbps
   tc class add dev eth1 parent 1:1 classid 1:11 htb rate $1kbps
 
+  #ingress filter
+  tc qdisc add dev eth1 handle ffff: ingress
+  tc filter add dev eth1 parent ffff: protocol ip prio 50 u32 match ip src 0.0.0.0/0 police rate $1kbit burst 10k drop flowid :1
 
   for i in {1..5}
   do
 
-    (time salt -t 180 'minion' cp.get_file /vagrant/jdom-2.0.6.zip /tmp/jdom-2.0.6.zip) 2>> times
+    (time salt -t 180 'minion' state.sls copy) 2>> times
+    salt -t 180 'minion' state.sls delete
     sleep 5
   done
 
-  tc qdisc del dev eth1 root
+  #remove egress
+  tc qdisc del dev eth1 root    &>/dev/null
+  #remove ingress
+  tc qdisc del dev eth1 ingress &>/dev/null
 }
 
 

@@ -28,7 +28,7 @@ Simple setup to test salt stack.
 	* Maybe it's necessary to restart salt-minion on minion/minion2
 * `sudo salt 'minion' state.highstate`
 * `sudo salt 'minion' state.sls vim`
-* `sudo salt 'minion' cp.get_file salt:///jdom-2.0.6.zip /home/vagratn/jdom-2.0.6.zip´
+* `sudo salt 'minion' state.sls copy´
 
 
 ## Misc
@@ -37,7 +37,3 @@ Simple setup to test salt stack.
 * Redo provisioning `vagrant provision master`
 * Reset minion `vagrant destroy minion && vagrant up minion`
 * Redo provisioning `vagrant provision minion`
-
-
-## Special THX to
-* [https://github.com/tzehon/vagrant-windows/](tzehon/vagrant-windows)
