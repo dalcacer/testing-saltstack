@@ -16,8 +16,9 @@ Vagrant.configure(2) do |config|
     :inline => 'grep -qs 192.168.250.2 /etc/hosts || echo "192.168.250.2 master salt" >> /etc/hosts'
     master.vm.provision :shell, path: "saltmaster.sh"
     master.vm.provider "virtualbox" do |v|
-        v.memory = 512
+        v.memory = 1024
         v.cpus = 2
+        v.gui = true
     end
   end
 

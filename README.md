@@ -9,7 +9,7 @@ Simple setup to test salt stack.
 	* 192.168.250.3
 * Vagrant `minion2` win7
 	* 192.168.250.4
-	
+
 
 # Usage
 * `vagrant up` → `grab a coffee`
@@ -28,7 +28,7 @@ Simple setup to test salt stack.
 	* Maybe it's necessary to restart salt-minion on minion/minion2
 * `sudo salt 'minion' state.highstate`
 * `sudo salt 'minion' state.sls vim`
-
+* `sudo salt 'minion' cp.get_file salt:///jdom-2.0.6.zip /home/vagratn/jdom-2.0.6.zip´
 
 
 ## Misc
